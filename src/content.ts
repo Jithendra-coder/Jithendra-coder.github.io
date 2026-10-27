@@ -179,12 +179,13 @@ export const projects: Project[] = [
 
 export const skillGroups: SkillGroup[] = [
   { name: "Programming", items: ["Python", "SQL", "OOP", "Data Structures & Algorithms"] },
-  { name: "AI & Generative AI", items: ["LLMs", "RAG", "LangChain", "LangGraph", "AI Agents", "Tool Calling", "Embeddings", "Vector Search", "Hugging Face Transformers"] },
-  { name: "Machine Learning", items: ["TensorFlow", "Keras", "PyTorch", "Scikit-learn", "Pandas", "NumPy", "Model Evaluation", "Feature Engineering"] },
-  { name: "Backend & APIs", items: ["FastAPI", "Flask", "REST APIs", "Pydantic", "Async Python", "Authentication", "Authorization", "API Integration"] },
-  { name: "Databases & Search", items: ["PostgreSQL", "SQLite", "Redis", "Vector Databases", "SQL Optimization"] },
-  { name: "Cloud & Development", items: ["AWS", "Docker", "Git", "GitHub", "GitHub Actions", "Linux"] },
-  { name: "Testing & AI Quality", items: ["Pytest", "Playwright", "API Testing", "RAG Evaluation", "LLM Evaluation", "Structured Outputs", "Observability", "Performance and Cost Optimization"] },
+  { name: "AI & Generative AI", items: ["LLMs", "RAG", "Prompt Engineering", "Embeddings", "Vector Search", "Tool Calling", "AI Agents", "LangChain", "LangGraph"] },
+  { name: "Machine Learning & Data Science", items: ["Pandas", "NumPy", "Scikit-learn", "PyTorch", "TensorFlow", "Keras", "Regression", "Classification", "Clustering", "Feature Engineering", "Model Evaluation", "Statistical Analysis"] },
+  { name: "Backend Development", items: ["FastAPI", "REST APIs", "Pydantic", "Authentication", "Authorization", "Async Python", "API Integration", "Flask"] },
+  { name: "Databases & Caching", items: ["PostgreSQL", "SQLite", "Redis", "pgvector", "Database Indexing & Search"] },
+  { name: "Cloud & DevOps", items: ["Docker", "Git", "GitHub", "GitHub Actions", "CI/CD", "Linux"] },
+  { name: "Testing & Engineering", items: ["Pytest", "Playwright", "Unit Testing", "API Testing", "Debugging", "Logging", "Performance Measurement"] },
+  { name: "AI Engineering", items: ["RAG Evaluation", "LLM Evaluation", "Structured Outputs", "Prompt-Injection Testing", "LLM Observability", "Token, Latency & Cost Tracking"] },
 ];
 
 export const experience: Experience[] = [

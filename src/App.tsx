@@ -11,7 +11,6 @@ import {
   BriefcaseBusiness,
   CalendarDays,
   ChartNoAxesCombined,
-  Cloud,
   Code2,
   Database,
   DatabaseSearch,
@@ -43,7 +42,6 @@ import {
   SiGithub,
   SiGithubactions,
   SiGooglechrome,
-  SiHuggingface,
   SiJavascript,
   SiKeras,
   SiLangchain,
@@ -209,19 +207,23 @@ const skillIcons: Record<string, ReactNode> = {
   "Data Structures & Algorithms": <GitBranch />,
   LLMs: <BrainCircuit />,
   RAG: <DatabaseSearch />,
+  "Prompt Engineering": <Workflow />,
   LangChain: <SiLangchain color="default" />,
   LangGraph: <SiLanggraph color="default" />,
   "AI Agents": <Bot />,
   "Tool Calling": <Wrench />,
   Embeddings: <Network />,
   "Vector Search": <ScanSearch />,
-  "Hugging Face Transformers": <SiHuggingface color="default" />,
   PyTorch: <SiPytorch color="default" />,
   "Scikit-learn": <SiScikitlearn color="default" />,
   Pandas: <SiPandas color="default" />,
   NumPy: <SiNumpy color="default" />,
   "Model Evaluation": <ChartNoAxesCombined />,
   "Feature Engineering": <SlidersHorizontal />,
+  Regression: <ChartNoAxesCombined />,
+  Classification: <Braces />,
+  Clustering: <Network />,
+  "Statistical Analysis": <ChartNoAxesCombined />,
   FastAPI: <SiFastapi color="default" />,
   "REST APIs": <Webhook />,
   Pydantic: <SiPydantic color="default" />,
@@ -231,21 +233,26 @@ const skillIcons: Record<string, ReactNode> = {
   "API Integration": <Workflow />,
   PostgreSQL: <SiPostgresql color="default" />,
   Redis: <SiRedis color="default" />,
-  "Vector Databases": <DatabaseZap />,
-  "SQL Optimization": <Gauge />,
-  AWS: <Cloud />,
+  pgvector: <DatabaseZap />,
+  "Database Indexing & Search": <ScanSearch />,
   Docker: <SiDocker color="default" />,
   Git: <SiGit color="default" />,
   GitHub: <SiGithub color="default" />,
   "GitHub Actions": <SiGithubactions color="default" />,
+  "CI/CD": <Workflow />,
   Linux: <SiLinux color="default" />,
   Pytest: <SiPytest color="default" />,
   "API Testing": <TestTubeDiagonal />,
+  "Unit Testing": <TestTubeDiagonal />,
+  Debugging: <Code2 />,
+  Logging: <Activity />,
+  "Performance Measurement": <Gauge />,
   "RAG Evaluation": <DatabaseSearch />,
   "LLM Evaluation": <ChartNoAxesCombined />,
   "Structured Outputs": <Braces />,
-  Observability: <Activity />,
-  "Performance and Cost Optimization": <Gauge />,
+  "Prompt-Injection Testing": <ShieldCheck />,
+  "LLM Observability": <Activity />,
+  "Token, Latency & Cost Tracking": <Gauge />,
 };
 
 function TechnologyMark({ name }: { name: string }) {
@@ -437,7 +444,7 @@ function SkillsSection() {
             <p className="related-projects" role="status">
               {selectedProjects.length
                 ? selectedSkill + " appears in: " + selectedProjects.map((project) => project.title).join(", ")
-                : "No related project has been added for " + selectedSkill + " yet."}
+                : "No featured project currently highlights " + selectedSkill + "."}
             </p>
           ) : null}
         </>
