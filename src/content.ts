@@ -180,11 +180,11 @@ export const projects: Project[] = [
 export const skillGroups: SkillGroup[] = [
   { name: "Programming", items: ["Python", "SQL", "OOP", "Data Structures & Algorithms"] },
   { name: "AI & Generative AI", items: ["LLMs", "RAG", "LangChain", "LangGraph", "AI Agents", "Tool Calling", "Embeddings", "Vector Search", "Hugging Face Transformers"] },
-  { name: "Machine Learning", items: ["PyTorch", "Scikit-learn", "Pandas", "NumPy", "Model Evaluation", "Feature Engineering"] },
-  { name: "Backend Engineering", items: ["FastAPI", "REST APIs", "Pydantic", "Async Python", "Authentication", "Authorization", "API Integration"] },
-  { name: "Databases", items: ["PostgreSQL", "Redis", "Vector Databases", "SQL Optimization"] },
+  { name: "Machine Learning", items: ["TensorFlow", "Keras", "PyTorch", "Scikit-learn", "Pandas", "NumPy", "Model Evaluation", "Feature Engineering"] },
+  { name: "Backend & APIs", items: ["FastAPI", "Flask", "REST APIs", "Pydantic", "Async Python", "Authentication", "Authorization", "API Integration"] },
+  { name: "Databases & Search", items: ["PostgreSQL", "SQLite", "Redis", "Vector Databases", "SQL Optimization"] },
   { name: "Cloud & Development", items: ["AWS", "Docker", "Git", "GitHub", "GitHub Actions", "Linux"] },
-  { name: "AI Engineering & Quality", items: ["Pytest", "API Testing", "RAG Evaluation", "LLM Evaluation", "Structured Outputs", "Observability", "Performance and Cost Optimization"] },
+  { name: "Testing & AI Quality", items: ["Pytest", "Playwright", "API Testing", "RAG Evaluation", "LLM Evaluation", "Structured Outputs", "Observability", "Performance and Cost Optimization"] },
 ];
 
 export const experience: Experience[] = [
