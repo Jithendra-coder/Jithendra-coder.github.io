@@ -1,0 +1,80 @@
+name: Build and deploy portfolio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+    outputs:
+      contact_configured: ${{ steps.form-config.outputs.configured }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check contact configuration
+        id: form-config
+        shell: bash
+        env:
+          WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
+        run: |
+          if [[ -n "$WEB3FORMS_ACCESS_KEY" ]]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Configure deployment URL
+        shell: bash
+        env:
+          SITE_URL_OVERRIDE: ${{ vars.SITE_URL }}
+        run: |
+          repo_name="${GITHUB_REPOSITORY#*/}"
+          if [[ -n "$SITE_URL_OVERRIDE" ]]; then
+            site_url="${SITE_URL_OVERRIDE%/}"
+            base_path="/"
+          elif [[ "$repo_name" == "${GITHUB_REPOSITORY_OWNER}.github.io" ]]; then
+            site_url="https://${GITHUB_REPOSITORY_OWNER}.github.io"
+            base_path="/"
+          else
+            site_url="https://${GITHUB_REPOSITORY_OWNER}.github.io"
+            base_path="/${repo_name}/"
+          fi
+          echo "VITE_SITE_URL=$site_url" >> "$GITHUB_ENV"
+          echo "VITE_BASE_PATH=$base_path" >> "$GITHUB_ENV"
+      - run: npm ci
+      - run: npm run build
+        env:
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    if: ${{ vars.PORTFOLIO_READY == 'true' && needs.build.outputs.contact_configured == 'true' }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4
