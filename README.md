@@ -23,7 +23,7 @@ Edit the typed data in `src/content.ts`:
 - `skillGroups` supplies the Technical Skills categories.
 - `experience` supplies the Experience section.
 
-The kiosk and online-ordering platform is marked as in development. Add more project details when they are ready.
+The Projects section features Place Your Order, OpenTrace, OpsPilot, and the Hate Speech Detector, with case studies based on their public repositories.
 
 ## Contact form
 
