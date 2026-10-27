@@ -18,25 +18,12 @@ jobs:
     permissions:
       contents: read
       pages: write
-    outputs:
-      contact_configured: ${{ steps.form-config.outputs.configured }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
-      - name: Check contact configuration
-        id: form-config
-        shell: bash
-        env:
-          WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
-        run: |
-          if [[ -n "$WEB3FORMS_ACCESS_KEY" ]]; then
-            echo "configured=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "configured=false" >> "$GITHUB_OUTPUT"
-          fi
       - name: Configure deployment URL
         shell: bash
         env:
@@ -59,12 +46,11 @@ jobs:
       - run: npm run build
         env:
           VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
   deploy:
-    if: ${{ vars.PORTFOLIO_READY == 'true' && needs.build.outputs.contact_configured == 'true' }}
     needs: build
     runs-on: ubuntu-latest
     environment:
@@ -75,6 +61,6 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
